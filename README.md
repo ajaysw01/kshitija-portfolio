@@ -1,74 +1,75 @@
-# Monochrome Artist Portfolio (React + Vite + Tailwind)
+# Kshitija Dabhade — Graphite Sketch Portfolio
 
-Minimal, gallery-first portfolio for a female sketch artist. Strict black/white/grey palette, subtle motion, and strong accessibility.
+> **A professional portfolio website, crafted with care and gifted to Kshitija for her birthday.**
 
-## Features
+This is a minimal, gallery-first portfolio for Kshitija Dabhade, a talented graphite sketch artist. The site features a strict black/white/grey palette, elegant motion, and strong accessibility. All artworks are original graphite sketches.
 
-- Gallery-first layout with responsive grid (4/2/1 columns)
-- Artwork cards with lazy-loaded responsive images (`webp` + `jpg` fallback)
-- Fullscreen lightbox modal with keyboard navigation and focus trap
-- Hash-based routing (Home, Gallery, About, Contact) without extra libs
-- Tailwind CSS for spacing/typography; Framer Motion for subtle animations
-- Local JSON data source: `src/data/artworks.json`
-- SEO basics: title, meta description, OG tags
+## ✨ Features
 
-## Structure
+- **Gallery-first layout** — Responsive grid (4/2/1 columns)
+- **Artwork cards** — Lazy-loaded images for fast performance
+- **Fullscreen lightbox** — Keyboard navigation, focus trap, and accessibility
+- **Simple navigation** — Home, Gallery, About, Contact (hash-based, no extra libraries)
+- **Modern stack** — React, Vite, Tailwind CSS, Framer Motion
+- **SEO optimized** — Title, meta description, OG tags
+- **Accessible** — Alt text, keyboard support, focus management
+- **Easy to update** — Add new artworks via a single JSON file
+
+## 🗂️ Project Structure
 
 ```
 src/
-	assets/
-		images/               # store responsive variants: name-480.webp/jpg, -1024, -2048
-	components/
-		Navbar.jsx
-		Footer.jsx
-		GalleryGrid.jsx
-		ArtworkCard.jsx
-		ArtworkModal.jsx
-	data/
-		artworks.json
-	pages/
-		Home.jsx
-		Gallery.jsx
-		About.jsx
-		Contact.jsx
-	App.jsx
+  assets/
+    images/           # All artwork images
+  components/
+    Navbar.jsx
+    Footer.jsx
+    GalleryGrid.jsx
+    ArtworkCard.jsx
+    ArtworkModal.jsx
+  data/
+    artworks.json     # All artwork metadata
+  pages/
+    Home.jsx
+    Gallery.jsx
+    About.jsx
+    Contact.jsx
+  App.jsx
 ```
 
-## Add Artworks
+## 🖼️ Adding New Artworks
 
-Edit `src/data/artworks.json` and add items like:
+To add a new sketch:
 
-```
-{
-	"id": 6,
-	"title": "Untitled Study",
-	"year": "2024",
-	"medium": "Graphite on paper",
-	"image": "/assets/images/art6",
-	"alt": "Close-up graphite sketch of a face"
-}
-```
+1. Place your image in `src/assets/images/` (e.g. `art7.jpg`).
+2. Add an entry to `src/data/artworks.json`:
 
-Place responsive images in `src/assets/images/` using this pattern:
+   ```json
+   {
+     "id": 7,
+     "title": "New Portrait",
+     "year": "2026",
+     "medium": "Graphite Sketch",
+     "image": "/assets/images/art7.jpg",
+     "alt": "Description of the sketch"
+   }
+   ```
 
-- `art6-480.webp`, `art6-1024.webp`, `art6-2048.webp`
-- `art6-480.jpg`, `art6-1024.jpg`, `art6-2048.jpg`
-
-## Development
+## 🚀 Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Build
+## 🏗️ Build
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Deployment
+## 🌐 Deployment
 
 ### Vercel
 
@@ -83,30 +84,35 @@ npm run preview
 - Build command: `npm run build`
 - Publish directory: `dist`
 
-## SEO & OG
+## 🔍 SEO & Open Graph
 
 - Base meta tags are in `index.html`.
-- Pages set `document.title` and meta description on mount.
-- For per-artwork OG images, generate static images and reference in `index.html` or a head manager if later added.
+- Each page sets its own `document.title` and meta description.
+- For per-artwork OG images, generate static images and reference in `index.html` or a head manager if needed.
 
-## Accessibility
+## ♿ Accessibility
 
-- Each artwork includes `alt` text from JSON.
+- Each artwork includes descriptive `alt` text.
 - Modal uses `role="dialog"`, traps focus, supports Esc/Left/Right.
 - Focus returns to the trigger on close.
 
-## QA Checklist
+## ✅ QA Checklist
 
-- Gallery shows correct grid on mobile (1 col), tablet (2), desktop (4).
-- Clicking artwork opens modal with image and metadata.
-- Keyboard works: Esc closes, arrows navigate.
-- No UI colors beyond black/white/grey.
-- Lighthouse: Performance ≥ 80, Accessibility ≥ 90.
+- Gallery shows correct grid on mobile (1 col), tablet (2), desktop (4)
+- Clicking artwork opens modal with image and metadata
+- Keyboard works: Esc closes, arrows navigate
+- No UI colors beyond black/white/grey
+- No search or filter bar in gallery (all graphite sketches)
+- Lighthouse: Performance ≥ 80, Accessibility ≥ 90
 
-## Commit Style
+## 📝 Commit Style
 
-Use small focused commits, e.g.:
+Use small, focused commits. Example:
 
 - `feat(gallery): add responsive GalleryGrid`
 - `chore: add artworks.json`
 - `feat(modal): artwork lightbox with keyboard nav`
+
+---
+
+### 🎁 Made with love and gifted to Kshitija — Happy Birthday!
