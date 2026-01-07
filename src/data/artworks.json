@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "title": "Boruto Uzumaki",
+    "year": "2024",
+    "medium": "Graphite sketch",
+    "image": "/assets/images/boruto.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 2,
+    "title": "Taehyung BTS",
+    "year": "2023",
+    "medium": "Graphite sketch",
+    "image": "/assets/images/bts.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 3,
+    "title": "Radha Eyes",
+    "year": "2024",
+    "medium": "Ink sketch",
+    "image": "/assets/images/eye_portrait.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 4,
+    "title": "Closed Eye",
+    "year": "2024",
+    "medium": "Graphite sketch",
+    "image": "/assets/images/eye.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 5,
+    "title": "Woman in Saree",
+    "year": "2023",
+    "medium": "Graphite sketch",
+    "image": "/assets/images/sketch3.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 6,
+    "title": "Sad Eyes",
+    "year": "2024",
+    "medium": "Charcoal sketch",
+    "image": "/assets/images/crying eye.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 7,
+    "title": "Berries",
+    "year": "2023",
+    "medium": "Graphite sketch",
+    "image": "/assets/images/berries.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 8,
+    "title": "Wpman Portrait",
+    "year": "2024",
+    "medium": "Ink sketch",
+    "image": "/assets/images/woman.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 9,
+    "title": "Calm Company",
+    "year": "2023",
+    "medium": "Graphite sketch",
+    "image": "/assets/images/sketch7.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 10,
+    "title": "Love Birds",
+    "year": "2024",
+    "medium": "Charcoal sketch",
+    "image": "/assets/images/sketch10.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 11,
+    "title": "Title 11",
+    "year": "2023",
+    "medium": "Graphite sketch",
+    "image": "/assets/images/sketch8.jpg",
+    "alt": "Sketch image"
+  },
+  {
+    "id": 12,
+    "title": "House on a Hill",
+    "year": "2024",
+    "medium": "Mixed media sketch",
+    "image": "/assets/images/sketch12.jpg",
+    "alt": "Sketch image"
+  }
+]
