@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import artworks from "../data/artworks.json";
 import GalleryGrid from "../components/GalleryGrid.jsx";
 
@@ -12,7 +12,7 @@ export default function Gallery() {
     document.title = "Gallery — Kshitija Dabhade";
     setMeta(
       "description",
-      "Explore the full gallery of monochrome sketches by Kshitija Dabhade."
+      "Explore the full gallery of graphite sketches by Kshitija Dabhade."
     );
   }, []);
 
@@ -23,25 +23,48 @@ export default function Gallery() {
       transition={{ duration: 0.6 }}
       className="space-y-8 sm:space-y-12 py-6 sm:py-8 md:py-12 px-4 sm:px-0"
     >
+      {/* Header Section */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="space-y-3 sm:space-y-4"
+        className="space-y-6"
       >
-        <motion.h1
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="dark:text-paper text-3xl sm:text-4xl md:text-5xl"
-        >
-          Gallery
-        </motion.h1>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <motion.h1
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="dark:text-paper text-3xl sm:text-4xl md:text-5xl font-serif font-light"
+          >
+            Gallery
+          </motion.h1>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"
+          >
+            <span className="font-medium">{artworks.length}</span>
+            <span>{artworks.length === 1 ? "artwork" : "artworks"}</span>
+          </motion.div>
+        </div>
       </motion.div>
-      <GalleryGrid
-        artworks={artworks}
-        onSelect={(a) => setOpenIndex(artworks.findIndex((x) => x.id === a.id))}
-      />
+
+      {/* Gallery Grid */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <GalleryGrid
+          artworks={artworks}
+          onSelect={(a) =>
+            setOpenIndex(artworks.findIndex((x) => x.id === a.id))
+          }
+        />
+      </motion.div>
+
       <Suspense fallback={null}>
         <ArtworkModal
           isOpen={openIndex !== null}
