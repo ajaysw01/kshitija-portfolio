@@ -65,22 +65,23 @@ export default function Contact() {
 
     try {
       const formElement = e.currentTarget;
+      const formData = new FormData(formElement);
+      
       const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(formElement)).toString(),
+        body: new URLSearchParams(formData).toString()
       });
 
       if (response.ok) {
         setFormState("success");
         setFormData({ name: "", email: "", message: "" });
-        // Reset to idle after 5 seconds
         setTimeout(() => setFormState("idle"), 5000);
       } else {
-        setFormState("error");
-        setTimeout(() => setFormState("idle"), 4000);
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
     } catch (error) {
+      console.error('Form submission error:', error);
       setFormState("error");
       setTimeout(() => setFormState("idle"), 4000);
     }
