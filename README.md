@@ -1,4 +1,4 @@
-# Kshitija Dabhade — Graphite Sketch Portfolio
+# Kshitija Dabhade — Sketch Artist Portfolio
 
 > **A professional portfolio website, crafted with care and gifted to Kshitija for her birthday.**
 
@@ -70,49 +70,12 @@ npm run preview
 ```
 
 ## 🌐 Deployment
-
-### Vercel
-
-- Import the repo in Vercel
-- Framework: Vite
-- Build command: `npm run build`
-- Output directory: `dist`
-
 ### Netlify
 
 - New site from Git
 - Build command: `npm run build`
 - Publish directory: `dist`
 
-## 🔍 SEO & Open Graph
 
-- Base meta tags are in `index.html`.
-- Each page sets its own `document.title` and meta description.
-- For per-artwork OG images, generate static images and reference in `index.html` or a head manager if needed.
-
-## ♿ Accessibility
-
-- Each artwork includes descriptive `alt` text.
-- Modal uses `role="dialog"`, traps focus, supports Esc/Left/Right.
-- Focus returns to the trigger on close.
-
-## ✅ QA Checklist
-
-- Gallery shows correct grid on mobile (1 col), tablet (2), desktop (4)
-- Clicking artwork opens modal with image and metadata
-- Keyboard works: Esc closes, arrows navigate
-- No UI colors beyond black/white/grey
-- No search or filter bar in gallery (all graphite sketches)
-- Lighthouse: Performance ≥ 80, Accessibility ≥ 90
-
-## 📝 Commit Style
-
-Use small, focused commits. Example:
-
-- `feat(gallery): add responsive GalleryGrid`
-- `chore: add artworks.json`
-- `feat(modal): artwork lightbox with keyboard nav`
-
----
 
 ### 🎁 Made with love and gifted to Kshitija — Happy Birthday!
