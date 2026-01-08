@@ -7,9 +7,13 @@ const socialLinks = [
     icon: FaInstagram,
     label: "Instagram",
   },
-  { href: "https://twitter.com", icon: FaTwitter, label: "Twitter" },
-  { href: "https://linkedin.com", icon: FaLinkedin, label: "LinkedIn" },
-  { href: "mailto:kshitija@example.com", icon: FaEnvelope, label: "Email" },
+  {
+    href: "mailto:kshitijadabhade454@gmail.com",
+    icon: FaEnvelope,
+    label: "Email",
+  },
+  { href: "#", icon: FaTwitter, label: "Twitter" },
+  { href: "#", icon: FaLinkedin, label: "LinkedIn" },
 ];
 
 export default function Footer() {
