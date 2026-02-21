@@ -64,13 +64,18 @@ export default function Contact() {
     setFormState("submitting");
 
     try {
-      const formElement = e.currentTarget;
-      const formData = new FormData(formElement);
+      // Encode form data properly for Netlify
+      const body = new URLSearchParams({
+        "form-name": "contact",
+        "name": formData.name,
+        "email": formData.email,
+        "message": formData.message
+      }).toString();
       
       const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
+        body: body
       });
 
       if (response.ok) {
