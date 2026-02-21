@@ -21,7 +21,6 @@ function App() {
   useEffect(() => {
     const onHashChange = () => {
       setRoute(getRouteFromHash());
-      // Smooth scroll to top on route change
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
     window.addEventListener("hashchange", onHashChange);
