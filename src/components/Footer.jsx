@@ -94,7 +94,7 @@ export default function Footer() {
           className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200/40 dark:border-gray-700/40"
         >
           <p className="text-center text-xs text-gray-600 dark:text-gray-500">
-            Designed & Developed with ❤️ for showcasing artistic excellence
+            Developed with ❤️
           </p>
         </motion.div>
       </div>
