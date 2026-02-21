@@ -44,7 +44,7 @@ export default function Navbar() {
           <img
             src="/assets/images/logo.png"
             alt="KD logo"
-            className="h-7 sm:h-8 md:h-10 w-auto transition-opacity group-hover:opacity-80"
+            className="h-10 sm:h-12 md:h-14 w-auto transition-opacity group-hover:opacity-80"
           />
         </a>
 

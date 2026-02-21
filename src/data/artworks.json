@@ -1,6 +1,21 @@
 [
-  {
+     
+    {
     "id": 1,
+    "title": "Yuji Itadori",
+    "year": "2026",
+    "medium": "Graphite sketch",
+    "image": "/assets/images/yuji-itadori.jpg",
+    "alt": "Sketch image"
+  },{
+    "id": 2,
+    "title": "Nihilist Penguin",
+    "year": "2026",
+    "medium": "Graphite sketch",
+    "image": "/assets/images/nihilist-penguin.jpg",
+    "alt": "Sketch image"
+  },{
+    "id": 3,
     "title": "Boruto Uzumaki",
     "year": "2024",
     "medium": "Graphite sketch",
@@ -8,7 +23,7 @@
     "alt": "Sketch image"
   },
   {
-    "id": 2,
+    "id": 4,
     "title": "Taehyung BTS",
     "year": "2023",
     "medium": "Graphite sketch",
@@ -16,10 +31,10 @@
     "alt": "Sketch image"
   },
   {
-    "id": 3,
+    "id": 6,
     "title": "Radha Eyes",
     "year": "2024",
-    "medium": "Ink sketch",
+    "medium": "Graphite sketch",
     "image": "/assets/images/eye_portrait.jpg",
     "alt": "Sketch image"
   },
@@ -32,19 +47,11 @@
     "alt": "Sketch image"
   },
   {
-    "id": 5,
-    "title": "Woman in Saree",
-    "year": "2023",
-    "medium": "Graphite sketch",
-    "image": "/assets/images/sketch3.jpg",
-    "alt": "Sketch image"
-  },
-  {
     "id": 6,
     "title": "Sad Eyes",
     "year": "2024",
-    "medium": "Charcoal sketch",
-    "image": "/assets/images/crying eye.jpg",
+    "medium": "Graphite sketch",
+    "image": "/assets/images/crying-eye.jpg",
     "alt": "Sketch image"
   },
   {
@@ -59,40 +66,8 @@
     "id": 8,
     "title": "Wpman Portrait",
     "year": "2024",
-    "medium": "Ink sketch",
+    "medium": "Graphite sketch",
     "image": "/assets/images/woman.jpg",
-    "alt": "Sketch image"
-  },
-  {
-    "id": 9,
-    "title": "Calm Company",
-    "year": "2023",
-    "medium": "Graphite sketch",
-    "image": "/assets/images/sketch7.jpg",
-    "alt": "Sketch image"
-  },
-  {
-    "id": 10,
-    "title": "Love Birds",
-    "year": "2024",
-    "medium": "Charcoal sketch",
-    "image": "/assets/images/sketch10.jpg",
-    "alt": "Sketch image"
-  },
-  {
-    "id": 11,
-    "title": "Title 11",
-    "year": "2023",
-    "medium": "Graphite sketch",
-    "image": "/assets/images/sketch8.jpg",
-    "alt": "Sketch image"
-  },
-  {
-    "id": 12,
-    "title": "House on a Hill",
-    "year": "2024",
-    "medium": "Mixed media sketch",
-    "image": "/assets/images/sketch12.jpg",
     "alt": "Sketch image"
   }
 ]

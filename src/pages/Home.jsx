@@ -22,7 +22,7 @@ export default function Home() {
       className="space-y-12 md:space-y-20"
     >
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] sm:min-h-[85vh] flex items-center justify-center overflow-hidden -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12">
+      <section className="relative min-h-[90vh] sm:min-h-[85vh] flex items-start sm:items-center justify-center overflow-hidden -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12 pt-32 sm:pt-0">
         <motion.div
           initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -30,10 +30,17 @@ export default function Home() {
           className="absolute inset-0 z-0"
         >
           <div className="relative w-full h-full">
+            {/* Portrait image for mobile */}
+            <img
+              src="/assets/images/kshitija-sititng.jpg"
+              alt="Artist's workspace"
+              className="sm:hidden w-full h-full object-cover object-center"
+            />
+            {/* Landscape image for larger screens */}
             <img
               src="/assets/images/hero_landscape.jpg"
               alt="Artist's workspace"
-              className="w-full h-full object-cover object-center"
+              className="hidden sm:block w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/30"></div>
           </div>
@@ -53,6 +60,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.8 }}
+            className="hidden sm:block"
           >
             <motion.a
               href="#/gallery"
@@ -111,7 +119,7 @@ export default function Home() {
             Featured Works
           </h2>
         </motion.div>
-        <GalleryGrid artworks={featured} />
+        <GalleryGrid artworks={featured} viewMode="grid" />
       </motion.section>
     </motion.div>
   );
