@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
 import ArtworkCard from "./ArtworkCard.jsx";
 
 const containerVariants = {
@@ -6,8 +7,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
+      delayChildren: 0.15,
     },
   },
 };
@@ -15,65 +16,139 @@ const containerVariants = {
 const itemVariants = {
   hidden: {
     opacity: 0,
-    y: 30,
-    scale: 0.95,
+    y: 60,
+    scale: 0.9,
+    rotateX: 15,
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
+    rotateX: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.7,
       ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
 
-export default function GalleryGrid({ artworks, onSelect }) {
+// Individual item with intersection observer for scroll-triggered animation
+function GalleryItem({ artwork, index, onSelect, viewMode }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [isHovered, setIsHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // 3D tilt effect handler
+  const handleMouseMove = useCallback((e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setMousePosition({ x, y });
+  }, []);
+
+  // Calculate masonry row span based on index pattern
+  const getMasonrySpan = (idx) => {
+    const pattern = [2, 1, 1, 2, 1, 2, 1, 1]; // Creates visual rhythm
+    return pattern[idx % pattern.length] === 2 ? "row-span-2" : "row-span-1";
+  };
+
+  const tiltX = isHovered ? (mousePosition.y - 0.5) * 10 : 0;
+  const tiltY = isHovered ? (mousePosition.x - 0.5) * -10 : 0;
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={itemVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setMousePosition({ x: 0.5, y: 0.5 });
+      }}
+      onMouseMove={handleMouseMove}
+      className={`relative group perspective-1000 ${
+        viewMode === "masonry" ? getMasonrySpan(index) : ""
+      }`}
+      style={{
+        transformStyle: "preserve-3d",
+      }}
+    >
+      <motion.div
+        animate={{
+          rotateX: tiltX,
+          rotateY: tiltY,
+          scale: isHovered ? 1.02 : 1,
+          z: isHovered ? 50 : 0,
+        }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="h-full"
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        {/* Glow effect behind card */}
+        <motion.div
+          className="absolute -inset-2 bg-gradient-to-r from-gray-400/20 via-gray-300/20 to-gray-400/20 dark:from-gray-600/20 dark:via-gray-500/20 dark:to-gray-600/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{ transform: "translateZ(-20px)" }}
+        />
+        
+        {/* Card with shine effect */}
+        <div className="relative h-full overflow-hidden rounded-xl">
+          <ArtworkCard 
+            artwork={artwork} 
+            onSelect={onSelect} 
+            mousePosition={mousePosition}
+            isHovered={isHovered}
+          />
+          
+          {/* Animated shine sweep */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(255,255,255,0.15) 0%, transparent 50%)`,
+              opacity: isHovered ? 1 : 0,
+              transition: "opacity 0.3s",
+            }}
+          />
+        </div>
+      </motion.div>
+
+      {/* Bottom reflection effect */}
+      <motion.div
+        className="absolute -bottom-4 left-4 right-4 h-8 bg-gradient-to-b from-black/5 to-transparent dark:from-white/5 blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{ transform: "scaleY(-0.3) translateZ(-10px)" }}
+      />
+    </motion.div>
+  );
+}
+
+export default function GalleryGrid({ artworks, onSelect, viewMode = "masonry" }) {
   return (
     <motion.section
       aria-label="Gallery"
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 lg:gap-8 xl:gap-10"
+      className={`
+        ${viewMode === "masonry" 
+          ? "columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-5 lg:gap-6 space-y-4 sm:space-y-5 lg:space-y-6"
+          : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6"
+        }
+      `}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      viewport={{ once: true, margin: "-100px" }}
     >
-      {artworks.map((a, index) => (
-        <motion.div
-          key={a.id}
-          variants={itemVariants}
-          whileHover={{ y: -8 }}
-          transition={{ duration: 0.3 }}
-          className="relative group"
-          style={{
-            // Add subtle random rotation for organic feel
-            rotate: index % 3 === 0 ? -0.5 : index % 2 === 0 ? 0.5 : 0,
-          }}
+      {artworks.map((artwork, index) => (
+        <div 
+          key={artwork.id} 
+          className={viewMode === "masonry" ? "break-inside-avoid mb-4 sm:mb-5 lg:mb-6" : ""}
         >
-          {/* Decorative corner accent */}
-          <motion.div
-            className="absolute -top-2 -left-2 w-8 h-8 border-l-2 border-t-2 border-gray-300 dark:border-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-            initial={{ scale: 0, rotate: -45 }}
-            whileHover={{ scale: 1, rotate: 0 }}
+          <GalleryItem
+            artwork={artwork}
+            index={index}
+            onSelect={onSelect}
+            viewMode={viewMode}
           />
-          <motion.div
-            className="absolute -bottom-2 -right-2 w-8 h-8 border-r-2 border-b-2 border-gray-300 dark:border-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-            initial={{ scale: 0, rotate: -45 }}
-            whileHover={{ scale: 1, rotate: 0 }}
-          />
-
-          <ArtworkCard artwork={a} onSelect={onSelect} />
-
-          {/* Subtle index number overlay */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 dark:bg-charcoal/90 backdrop-blur-sm flex items-center justify-center text-xs font-medium text-charcoal dark:text-paper shadow-lg pointer-events-none"
-          >
-            {String(index + 1).padStart(2, "0")}
-          </motion.div>
-        </motion.div>
+        </div>
       ))}
     </motion.section>
   );
